@@ -1,50 +1,57 @@
 # Write your code here.
-def word_substituter(tweet_one)
-  answer = tweet_one.split.collect do |word|
-    if dictionary.keys.include?(word.downcase)
-      word = dictionary[word.downcase]
+def word_substituter(tweet)
+  shortened = tweet.split.map do |word|
+    if dictionary.keys.include?(word)
+      dictionary[word]
     else
       word
     end
   end
-  answer.join(" ")
+
+  shortened.join(" ")
 end
 
 def dictionary
-  dictionary = {
-  "too" => "2",
-  "to" => "2",
-  "two" =>"2",
-  "four" => "4",
-  "for" => "4",
-  "be" => "b",
-  "you" => "u",
-  "at" => "@",
-  "and" => "&"
-}
+  {
+    "hello" => "hi",
+    "Hello" => "hi",
+    "to" => "2",
+    "To" => "2",
+    "two" => "2",
+    "Two" => "2",
+    "too" => "2",
+    "Too" => "2",
+    "for" => "4",
+    "For" => "4",
+    "four" => "4",
+    "Four" => "4",
+    "be" => "b",
+    "Be" => "b",
+    "you" => "u",
+    "You" => "u",
+    "at" => "@",
+    "At" => "@",
+    "and" => "&",
+    "And" => "&"
+  }
 
 end
 
 def bulk_tweet_shortener(tweets)
-  tweets.each do |tweet|
-    tweet = word_substituter(tweet)
-    puts "#{tweet}"
+  shortened = tweets.each do |tweet|
+    puts word_substituter(tweet)
   end
 end
 
 def selective_tweet_shortener(tweet)
-  if tweet.length > 140
+  if tweet.size > 140
     word_substituter(tweet)
   else
     tweet
-  end
+  end 
+
 end
 
-def shortened_tweet_truncator(tweet)
-  tweet = selective_tweet_shortener(tweet)
-  if tweet.length > 140
-    tweet[0..136] + "..."
-  else
-    tweet
-  end
+def shortened_tweet_truncator
+
 end
